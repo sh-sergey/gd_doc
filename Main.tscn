@@ -1,0 +1,185 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://doc_data.gd" type="Script" id=1]
+[ext_resource path="res://editor_help.gd" type="Script" id=2]
+[ext_resource path="res://class_dialog.gd" type="Script" id=3]
+
+[node name="Main" type="Node"]
+
+[node name="DocData" type="Node" parent="."]
+
+script/script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+tab_align = 1
+tabs_visible = true
+
+[node name="EditorHelp" type="Control" parent="TabContainer"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+script/script = ExtResource( 2 )
+
+[node name="Classes" type="Button" parent="TabContainer/EditorHelp"]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = -4.0
+margin/right = 0.0
+margin/bottom = 16.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Classes"
+flat = false
+
+[node name="TextPanel" type="Panel" parent="TabContainer/EditorHelp"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="Text" type="RichTextLabel" parent="TabContainer/EditorHelp/TextPanel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 1.0
+margin/bottom = 10.0
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="ClassDialog" type="WindowDialog" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 40.0
+margin/top = 40.0
+margin/right = 40.0
+margin/bottom = 40.0
+popup/exclusive = true
+window/title = "Classes"
+script/script = ExtResource( 3 )
+
+[node name="Tree" type="Tree" parent="ClassDialog"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 40.0
+custom_constants/vseparation = 4
+custom_constants/hseparation = 4
+
+[node name="Open" type="Button" parent="ClassDialog"]
+
+anchor/left = 2
+anchor/top = 1
+anchor/right = 2
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.7
+margin/top = 32.0
+margin/right = 0.756836
+margin/bottom = 8.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Open"
+flat = false
+
+[node name="Cancel" type="Button" parent="ClassDialog"]
+
+anchor/left = 2
+anchor/top = 1
+anchor/right = 2
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.2
+margin/top = 32.0
+margin/right = 0.2
+margin/bottom = 8.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Cancel"
+flat = false
+
+[connection signal="pressed" from="TabContainer/EditorHelp/Classes" to="TabContainer/EditorHelp" method="_on_Classes_pressed"]
+
+[connection signal="meta_clicked" from="TabContainer/EditorHelp/TextPanel/Text" to="TabContainer/EditorHelp" method="_on_Text_meta_clicked"]
+
+[connection signal="item_activated" from="ClassDialog/Tree" to="ClassDialog" method="_on_Tree_item_activated"]
+
+[connection signal="pressed" from="ClassDialog/Open" to="ClassDialog" method="_on_Open_pressed"]
+
+[connection signal="pressed" from="ClassDialog/Cancel" to="ClassDialog" method="_on_Cancel_pressed"]
+
+
